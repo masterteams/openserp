@@ -2,365 +2,68 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="dark">
-<title>OpenSERP — جست‌وجوی وب و ویدئو</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>OpenSERP Search — جست‌وجوی چندموتوره</title>
 <style>
-:root{color-scheme:dark;background:#0a1020;color:#e7f0f9;font:14px/1.7 Tahoma,"Segoe UI",Arial,sans-serif}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse 90% 430px at 50% -5%,#17414b,transparent),#0a1020;min-height:100vh}
-header,main,footer{max-width:1120px;margin:auto;padding:18px}header{display:flex;align-items:center;justify-content:space-between;padding-top:27px}
-h1{font-size:27px;margin:0}h1 span{color:#60ded2}h2{margin:0 0 12px;font-size:18px}
-.sub{font-size:13px;color:#a2b6c9;margin:6px 0 16px;line-height:1.9}
-.panel{background:#141f32;border:1px solid #304157;border-radius:17px;padding:22px;margin-bottom:17px}
-.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:13px}
-.field{display:flex;flex-direction:column;gap:7px}
-.field label,legend{font-weight:600;color:#c0d1e0;font-size:13px}
-.w12{grid-column:span 12}.w6{grid-column:span 6}.w4{grid-column:span 4}.w3{grid-column:span 3}
-input[type=text],input[type=url],select,textarea{background:#0c1729;color:#e7f3ff;border:1px solid #3e536a;border-radius:10px;padding:11px 12px;width:100%;font:inherit}
-input::placeholder,textarea::placeholder{color:#8498ad}
-textarea{min-height:135px;resize:vertical;direction:ltr;text-align:left}
-input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid #57dacc;outline-offset:2px}
-fieldset{border:1px solid #374c65;border-radius:11px;padding:12px 15px}
-.engine-list{display:flex;gap:9px 20px;flex-wrap:wrap;padding-top:8px}
-.engine-list label{direction:ltr;display:flex;gap:7px;align-items:center;cursor:pointer}
-input[type=checkbox]{accent-color:#58ddd0}
-.actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:15px}
-button,.file-button{border-radius:10px;border:1px solid #42586e;background:#1c3147;color:#d9eaf6;padding:10px 17px;font:inherit;cursor:pointer}
-button.primary{border-color:#5ee3d1;background:#5ee3d1;color:#05292d;font-weight:800;padding:12px 25px}
-button:disabled{opacity:.5;cursor:not-allowed}
-.notice{background:#153541;border:1px solid #327987;border-radius:11px;padding:12px 16px;color:#c5f3ed;line-height:1.9;margin-bottom:17px}
-.notice.warn{background:#3c2f1c;border-color:#87613a;color:#ffe0ac}
-.notice.error{background:#3a242c;border-color:#93506a;color:#ffcfdb}
-[hidden]{display:none!important}
-.metrics{display:flex;gap:10px;flex-wrap:wrap}
-.metric{flex:1;min-width:130px;padding:13px;border:1px solid #2d485d;border-radius:11px;background:#0e1c2d}
-.metric strong{display:block;font-size:22px}.metric small{color:#9eb7cb}
-.information{font-size:12px;color:#a6bcd0;line-height:2;overflow-wrap:anywhere;margin:10px 0}
-.tags{display:flex;gap:7px;flex-wrap:wrap}
-.tag{border:1px solid #3b536c;background:#1b3449;color:#bed9e9;border-radius:7px;padding:4px 9px;font-size:11px}
-.tag.video{background:#153d39;color:#95f1e0;border-color:#287f78}
-.tag.warn{background:#3c3020;color:#ffe0ac;border-color:#806139}
-.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
-.card{background:#152136;border:1px solid #304359;border-radius:15px;padding:17px;min-width:0}
-.card a{display:block;color:#adebf0;font-size:16px;font-weight:bold;line-height:1.75;overflow-wrap:anywhere;text-decoration:none;margin:12px 0 5px}
-.card a:hover{text-decoration:underline}
-.card p{color:#b8cad9;white-space:pre-wrap;line-height:1.9;overflow-wrap:anywhere}
-.card .url{direction:ltr;text-align:left;color:#9ab9d0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px}
-.bar{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:14px 0}
-.bar select{width:auto}
-.empty{grid-column:1/-1;text-align:center;color:#aabed0;border:1px dashed #455b72;padding:37px 15px;border-radius:12px}
-details{background:#111c2e;border:1px solid #344b62;border-radius:11px;padding:13px;margin-top:14px}
-summary{font-weight:700;cursor:pointer}
-pre{max-height:400px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;direction:ltr;text-align:left}
-footer{color:#91a5bb;text-align:center;font-size:12px;padding-bottom:37px;line-height:1.9}
-.ltr{direction:ltr;text-align:left}
-@media(max-width:790px){.cards{grid-template-columns:1fr}.w3,.w4,.w6{grid-column:span 6}header,main,footer{padding:13px}.panel{padding:16px}}
-@media(max-width:500px){.w3,.w4,.w6{grid-column:span 12}.metric{min-width:115px}}
+:root{font-family:Vazirmatn,"Segoe UI",Tahoma,Arial,sans-serif;color-scheme:dark;background:#0b111d;color:#ecf2fa;--surface:#131e2c;--surface2:#192639;--line:#29394d;--muted:#98abc1;--accent:#52e1c5;--accent2:#70b8f9;--danger:#fd9caa;--radius:17px}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse 80% 430px at 55% -10%,#123d45 0,transparent 80%),#0b111d}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.46;cursor:default}a{color:inherit;text-decoration:none}a:hover{text-decoration:underline}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}svg{width:19px;height:19px;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}h1,h2,h3,p{margin-top:0}.shell{width:min(1320px,calc(100% - 44px));margin:auto}.top{height:86px;display:flex;align-items:center;justify-content:space-between;gap:18px;border-bottom:1px solid #29384970}.brand{display:flex;align-items:center;gap:12px}.logo{width:46px;height:46px;display:grid;place-items:center;background:linear-gradient(135deg,#6df2d4,#68a9ff);color:#072734;font-size:27px;font-weight:900;border-radius:14px;box-shadow:0 10px 26px #3cf7e21c}.brand strong{font-size:21px;letter-spacing:-.6px}.brand small{display:block;color:var(--muted);font-size:11px;margin-top:2px}.top-actions{display:flex;align-items:center;gap:10px}.top-link{border:1px solid var(--line);background:#182638;border-radius:11px;padding:9px 13px;color:#cfdfed;font-size:12px}.status{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:12px}.status .dot{display:inline-block;width:8px;height:8px;background:#6b7d90;border-radius:100%}.status.online .dot{background:#54dfb6;box-shadow:0 0 0 4px #54dfb622}.status.offline .dot{background:#f49baa}main{padding:34px 0 32px}.heading{margin-bottom:24px}.heading h1{font-size:clamp(28px,4vw,42px);letter-spacing:-1px;margin-bottom:9px}.heading p{color:var(--muted);font-size:14px;line-height:1.9;margin-bottom:0}.panel{background:linear-gradient(155deg,#142130,#111a28);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 14px 45px #0002}.search-panel{padding:22px}.search-bar{display:flex;gap:11px}.search-text{flex:1;min-width:0;position:relative}.search-text>svg{position:absolute;right:15px;top:50%;transform:translateY(-50%);color:#85a5bd}.search-text input{padding-right:47px}.control,input[type="text"],input[type="url"],select,textarea{width:100%;height:44px;border:1px solid #3a4d63;background:#0d1725;color:#ecf6ff;border-radius:11px;padding:10px 13px;min-width:0}input::placeholder,textarea::placeholder{color:#8194a7}.search-text input{height:53px;font-size:16px}.btn{border:1px solid #34485e;color:#e8f3ff;background:#1b2d40;border-radius:11px;padding:11px 16px;display:inline-flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap;font-weight:600}.btn.primary{background:linear-gradient(110deg,#4edfc0,#5dd9dc);border-color:#4edfc0;color:#072a2b;padding:12px 22px}.btn.ghost{background:transparent;color:#c1d3e6}.btn.small{font-size:12px;padding:8px 12px}.btn:hover:not(:disabled){filter:brightness(1.12);text-decoration:none}.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;margin-top:18px}.field{grid-column:span 3;min-width:0}.field.wide{grid-column:span 6}.field label{display:block;font-size:12px;color:#adc0d5;margin-bottom:8px;font-weight:600}.field input,.field select{font-size:13px}.ltr{direction:ltr;text-align:left}.engine-control{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin-top:18px;border-top:1px solid #2a3d4f;padding-top:15px}.engine-label{color:var(--muted);font-size:12px;margin-left:8px}.engine-pill{display:flex;align-items:center;gap:6px;padding:7px 10px;border-radius:9px;background:#18283a;border:1px solid #30455c;color:#c4d7ea;font-size:11px;cursor:pointer;direction:ltr}.engine-pill:has(input:not(:checked)){opacity:.56}.engine-pill input{accent-color:var(--accent);width:14px;height:14px;margin:0}.hint{color:#8ea3b9;font-size:12px;line-height:1.9;margin:12px 1px 0}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:24px 0 15px}.tabs{display:flex;align-items:center;gap:5px;padding:5px;border:1px solid var(--line);background:#131e2b;border-radius:12px}.tab{border:0;border-radius:9px;padding:10px 16px;color:#9eb3cb;background:transparent;font-weight:600;font-size:13px}.tab.active{color:#052524;background:#69dfcb}.toolbar-right{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.badge{border-radius:8px;border:1px solid #34475b;background:#192b3e;padding:6px 9px;color:#bbd0df;font-size:11px;white-space:nowrap}.badge.green{border-color:#276f68;background:#103b3b;color:#86ebd8}.badge.amber{border-color:#6a5439;background:#33281c;color:#f0d6a5}.toast{padding:14px 17px;border-radius:12px;background:#173838;color:#b3e9df;border:1px solid #2e766e;margin-bottom:16px;line-height:1.9;font-size:13px}.toast.error{background:#39222d;color:#f6b4c0;border-color:#8a4255}.toast.warn{background:#3a3021;color:#f7dbad;border-color:#785b38}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:17px}.stat{background:#131e2d;border:1px solid #293c50;border-radius:14px;padding:15px}.stat strong{font-size:24px;display:block;direction:ltr;text-align:right;font-variant-numeric:tabular-nums}.stat span{font-size:12px;color:var(--muted)}.results-top{display:flex;justify-content:space-between;align-items:center;gap:13px;margin-bottom:12px;flex-wrap:wrap}.results-top h2{margin:0;font-size:18px}.results-top p{color:var(--muted);font-size:12px;margin:5px 0 0}.errors{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.card{background:#131e2b;border:1px solid #29384b;border-radius:15px;min-width:0;overflow:hidden;transition:transform .2s,border-color .2s}.card:hover{transform:translateY(-3px);border-color:#4b697b}.preview{aspect-ratio:16/9;position:relative;background:linear-gradient(135deg,#1b3850,#24314b);display:flex;align-items:center;justify-content:center;overflow:hidden}.preview img{width:100%;height:100%;object-fit:cover;display:block}.preview .fallback{display:flex;flex-direction:column;align-items:center;gap:9px;color:#8fc7d4;font-size:12px}.preview .fallback svg{height:42px;width:42px;stroke-width:1.3}.play{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;pointer-events:none}.play span{height:48px;width:48px;border-radius:50%;display:grid;place-items:center;background:#0d1a24bd;color:white;border:1px solid #ffffff67;backdrop-filter:blur(8px);font-size:23px}.preview .duration{position:absolute;bottom:9px;left:9px;background:#0c1421ed;border-radius:6px;padding:3px 8px;color:white;font-size:12px;direction:ltr}.preview-type{position:absolute;right:9px;top:9px;background:#0e2230e8;color:#a9ecdd;border:1px solid #72d4c544;border-radius:6px;padding:3px 7px;font-size:11px}.card-body{padding:14px 14px 15px}.card-title{font-weight:750;line-height:1.7;font-size:14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:46px;overflow-wrap:anywhere}.card-title:hover{color:var(--accent)}.snippet{font-size:12px;line-height:1.75;color:#91a9bf;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:41px;margin:9px 0}.meta{display:flex;align-items:center;justify-content:space-between;gap:6px;border-top:1px solid #2a3a4b;padding-top:12px;margin-top:12px}.meta .domain{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#b4c9dc;font-size:11px;direction:ltr;text-align:left}.metadata{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px}.empty{grid-column:1/-1;background:#132032;border:1px dashed #375267;border-radius:15px;padding:55px 15px;text-align:center;color:#a9bfd1}.pagination{display:flex;justify-content:center;align-items:center;gap:14px;margin:23px 0}.page-number{font-size:13px;color:#bfd1e0;min-width:115px;text-align:center;direction:ltr}.offline{margin-top:25px;padding:20px}.offline h2{font-size:16px}.offline summary{cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:14px;font-weight:700}.offline details[open] summary{margin-bottom:14px}.offline textarea{height:125px;resize:vertical;direction:ltr;text-align:left;font:12px/1.6 Consolas,monospace}.offline-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:11px}.offline input[type=file]{max-width:230px;color:#acbfd2;font-size:12px}.raw-details{margin-top:17px;border-top:1px solid #2c4054;padding-top:14px}.raw-details summary{color:var(--muted);cursor:pointer;font-size:12px}.raw-details pre{max-height:260px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;direction:ltr;text-align:left;color:#b3cede;font:11px/1.6 Consolas,monospace}.foot{border-top:1px solid #2c3c4d;padding:20px 0 35px;color:#7892aa;text-align:center;font-size:11px;line-height:2}.loading{display:flex;align-items:center;gap:9px}.spinner{width:16px;height:16px;border:2px solid #71e5d555;border-top-color:#76efdf;border-radius:50%;animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}[hidden]{display:none!important}@media(max-width:1100px){.cards{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:780px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.field{grid-column:span 6}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.search-bar{flex-wrap:wrap}.search-text{flex-basis:100%}.top{height:auto;padding:16px 0}.top-link{display:none}}@media(max-width:500px){.shell{width:min(100% - 26px,1320px)}main{padding-top:24px}.heading h1{font-size:28px}.cards{grid-template-columns:1fr}.field{grid-column:span 12}.field.wide{grid-column:span 12}.tab{padding:8px 11px}.search-panel{padding:14px}.toolbar-right{width:100%}.btn{padding:10px 12px}}
 </style>
 </head>
 <body>
-<header><h1>Open<span>SERP</span> Search</h1><span class="sub">Standalone HTML • بدون نصب</span></header>
-<main>
-<section class="panel" aria-labelledby="search-title">
-<h2 id="search-title">جست‌وجوی چندموتوره</h2>
-<p class="sub">این فایل را مستقیماً در مرورگر باز کنید. برای جست‌وجوی آنلاین، سرویس OpenSERP باید روی آدرس API روشن باشد. انتخاب زمان و کیفیت به ساخت عبارت جست‌وجو کمک می‌کند و تضمین‌کنندهٔ مشخصات ویدئو نیست.</p>
+<header class="shell top"><div class="brand"><div class="logo">S</div><div><strong>OpenSERP</strong><small>Multi-engine search explorer</small></div></div><div class="top-actions"><div id="health" class="status"><span class="dot"></span><span id="health-label">API بررسی نشده</span></div><a class="top-link" href="https://github.com/masterteams/openserp" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></header>
+<main class="shell">
+<div class="heading"><h1>هرچه می‌خواهید، <span style="color:#65dfcc">یکجا پیدا کنید.</span></h1><p>جست‌وجوی هم‌زمان در شش موتور، همراه با پیش‌نمایش رسانه و جزئیات نتایج.</p></div>
+<section class="panel search-panel" aria-labelledby="search-title"><h2 id="search-title" style="font-size:15px;margin-bottom:15px">جست‌وجوی پیشرفته</h2>
 <form id="search-form">
-<div class="grid">
-<div class="field w12"><label for="query">موضوع جست‌وجو</label><input id="query" type="text" placeholder="مثلاً آموزش کامل Python" required autocomplete="off"></div>
-<div class="field w6"><label for="api">آدرس API</label><input id="api" type="url" class="ltr" value="http://127.0.0.1:7000" required></div>
-<div class="field w3"><label for="kind">نوع محتوا</label><select id="kind"><option value="video">ویدئو</option><option value="text">متن و وب</option><option value="all">همه</option></select></div>
-<div class="field w3"><label for="limit">حداکثر نتیجه برای هر موتور</label><select id="limit"><option value="10">10</option><option value="20" selected>20</option><option value="50">50</option><option value="100">100</option></select></div>
-<div class="field w4"><label for="minutes">حداقل مدت ویدئو</label><select id="minutes"><option value="0">بدون محدودیت</option><option value="5">۵ دقیقه</option><option value="15" selected>۱۵ دقیقه</option><option value="30">۳۰ دقیقه</option><option value="60">۶۰ دقیقه</option></select></div>
-<div class="field w4"><label for="quality">کیفیت موردنظر (کلیدواژه)</label><select id="quality"><option value="">فرقی ندارد</option><option value="720p">HD - 720p</option><option value="1080p" selected>Full HD - 1080p</option><option value="2160p">4K - 2160p</option></select></div>
-<div class="field w4"><label for="site">فقط این دامنه (اختیاری)</label><input id="site" class="ltr" type="text" placeholder="youtube.com"></div>
-<fieldset class="w12"><legend>موتورهای جست‌وجو</legend><div class="engine-list">
-<label><input type="checkbox" name="engine" value="google" checked>Google</label>
-<label><input type="checkbox" name="engine" value="bing" checked>Bing</label>
-<label><input type="checkbox" name="engine" value="yandex" checked>Yandex</label>
-<label><input type="checkbox" name="engine" value="baidu" checked>Baidu</label>
-<label><input type="checkbox" name="engine" value="duckduckgo" checked>DuckDuckGo</label>
-<label><input type="checkbox" name="engine" value="ecosia" checked>Ecosia</label>
-</div></fieldset>
-</div>
-<div class="actions"><button class="primary" type="submit" id="submit">جست‌وجو و نمایش نتایج</button><button type="button" id="cancel" hidden>لغو</button><small class="sub">حالت <code>balanced</code>؛ موتورهای انتخاب‌شده موازی اجرا می‌شوند.</small></div>
-</form>
-</section>
-<div id="notice" class="notice" role="status" aria-live="polite">عبارت جست‌وجو را وارد کنید یا خروجی JSON قبلی را در بخش پایین صفحه Paste کنید.</div>
-<section id="summary" class="panel" hidden aria-labelledby="summary-title">
-<h2 id="summary-title">خلاصهٔ پاسخ JSON</h2>
-<div class="metrics" id="metrics"></div><div class="information" id="request-meta"></div>
-<div class="tags" id="engine-status"></div><div class="information" id="engine-errors"></div>
-</section>
-<section id="output" hidden aria-labelledby="result-title">
-<div class="bar"><div class="actions" style="margin:0">
-<h2 id="result-title" style="margin:0">نتایج</h2>
-<select id="view" aria-label="فیلتر نتایج"><option value="all">همه</option><option value="video">فقط ویدئو</option><option value="text">متن / سایر صفحات</option></select>
-<label><input id="strict" type="checkbox"> فقط ویدئوهای با زمان ثبت‌شده</label>
-</div><button type="button" id="export">ذخیرهٔ JSON کامل</button></div>
-<div class="information" id="count"></div><div class="cards" id="cards"></div>
-<div class="actions"><button type="button" id="next" hidden>صفحهٔ بعد</button></div>
-<details><summary>مشاهدهٔ JSON خام</summary><pre id="raw"></pre></details>
-</section>
-<section class="panel" aria-labelledby="json-title">
-<h2 id="json-title">تحلیل JSON ذخیره‌شده یا خروجی curl</h2>
-<p class="sub">JSON را Paste کنید یا از رایانه انتخاب کنید. این کار آفلاین انجام می‌شود و اطلاعات شما به سرور دیگری آپلود نمی‌شود.</p>
-<div class="field"><label for="json-input">متن JSON</label><textarea id="json-input" spellcheck="false" placeholder='{"query":{},"meta":{},"results":[...]}'></textarea></div>
-<div class="actions"><button type="button" id="parse">تحلیل و نمایش JSON</button>
-<label class="file-button" for="json-file">انتخاب فایل JSON</label><input id="json-file" type="file" accept=".json,application/json" hidden>
-<small class="sub">حداکثر حجم: ۸ مگابایت</small></div>
-</section>
-</main>
-<footer>OpenSERP Local Dashboard • دسته‌بندی ویدئو مبتنی بر نشانه‌های URL/API است. زمان و کیفیت ناموجود را به‌عنوان اطلاعات قطعی نمایش نمی‌دهیم.</footer>
+<div class="search-bar"><div class="search-text"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><input id="query" type="text" placeholder="عبارت یا موضوع موردنظر را بنویسید…" autocomplete="off" required aria-label="عبارت جست‌وجو"></div><button class="btn primary" type="submit" id="submit"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>جست‌وجو</button><button class="btn ghost" id="cancel" type="button" hidden>لغو</button></div>
+<div class="grid"><div class="field wide"><label for="api">آدرس سرور API</label><input class="ltr" id="api" type="url" value="http://127.0.0.1:7000" required></div><div class="field"><label for="kind">نوع جست‌وجو</label><select id="kind"><option value="video">ویدئو</option><option value="image">تصویر</option><option value="all">همه / وب</option><option value="text">متن / وب</option></select></div><div class="field"><label for="quality">کیفیت هدف ویدئو</label><select id="quality"><option value="">بدون محدودیت</option><option value="720p">HD · 720p</option><option value="1080p" selected>Full HD · 1080p</option><option value="2160p">4K · 2160p</option></select></div><div class="field"><label for="minutes">حداقل مدت هدف</label><select id="minutes"><option value="0">بدون محدودیت</option><option value="5">۵ دقیقه</option><option value="15" selected>۱۵ دقیقه</option><option value="30">۳۰ دقیقه</option><option value="60">۶۰ دقیقه</option></select></div><div class="field"><label for="site">دامنهٔ اختیاری</label><input class="ltr" type="text" id="site" placeholder="youtube.com"></div></div>
+<div class="engine-control"><span class="engine-label">موتورها:</span><label class="engine-pill"><input type="checkbox" name="engine" value="google" checked>Google</label><label class="engine-pill"><input type="checkbox" name="engine" value="bing" checked>Bing</label><label class="engine-pill"><input type="checkbox" name="engine" value="duckduckgo" checked>DuckDuckGo</label><label class="engine-pill"><input type="checkbox" name="engine" value="yandex" checked>Yandex</label><label class="engine-pill"><input type="checkbox" name="engine" value="baidu" checked>Baidu</label><label class="engine-pill"><input type="checkbox" name="engine" value="ecosia" checked>Ecosia</label></div>
+<p class="hint">۲۰۰ نتیجه در هر صفحهٔ نمایش؛ هر درخواست API حداکثر ۱۰۰ نتیجه از هر موتور می‌خواهد. کیفیت و مدت ویدئو کلیدواژه‌اند و تنها با وجود دادهٔ واقعی تأیید می‌شوند.</p>
+</form></section>
+<div class="toolbar"><div class="tabs" role="tablist" aria-label="نوع نتایج"><button class="tab active" type="button" data-view="all" aria-selected="true">همه</button><button class="tab" type="button" data-view="video" aria-selected="false">ویدئو</button><button class="tab" type="button" data-view="image" aria-selected="false">تصویر</button><button class="tab" type="button" data-view="text" aria-selected="false">صفحات وب</button></div><div class="toolbar-right"><label class="badge" style="cursor:pointer"><input type="checkbox" id="strict" style="accent-color:#5cdbc6"> فقط مدت تأییدشده</label><span class="badge">۲۰۰ نتیجه / صفحه</span><button type="button" class="btn small" id="export" disabled>دریافت JSON</button></div></div>
+<div class="toast" id="notice" role="status" aria-live="polite">برای آغاز، عبارتی را جست‌وجو کنید یا JSON را در بخش پایینی صفحه بارگذاری کنید.</div>
+<div id="results-section" hidden><div class="stats" id="stats"></div><div class="errors" id="engine-errors"></div><div class="results-top"><div><h2 id="results-heading">نتایج جست‌وجو</h2><p id="results-caption"></p></div><div id="busy-indicator" class="loading" hidden><span class="spinner"></span><span class="hint">در حال دریافت نتایج بیشتر…</span></div></div><div class="cards" id="cards"></div><nav class="pagination" aria-label="صفحه‌بندی"><button class="btn" type="button" id="prev">صفحهٔ قبل</button><span class="page-number" id="page-label">1 / 1</span><button class="btn" type="button" id="next">صفحهٔ بعد</button></nav><details class="raw-details"><summary>مشاهدهٔ آخرین پاسخ خام API (JSON)</summary><pre id="raw"></pre></details></div>
+<section class="panel offline"><details id="import-details"><summary>واردکردن JSON ذخیره‌شده یا خروجی Batch Search <span>⌄</span></summary><p class="hint">ساختارهای OpenSERP، خروجی `merged.json` از Batch Search و Snapshot این رابط پشتیبانی می‌شوند. فایل بدون بارگذاری به سرور در همین مرورگر تحلیل می‌شود.</p><textarea id="json-input" placeholder='{"query":{},"meta":{},"results":[]}' aria-label="متن JSON"></textarea><div class="offline-actions"><button type="button" class="btn" id="parse">تحلیل JSON</button><input id="json-file" type="file" accept=".json,application/json" aria-label="انتخاب فایل JSON"><span class="hint">حداکثر ۲۰ مگابایت</span></div></details></section>
+</main><footer class="shell foot">OpenSERP • صفحهٔ مستقل HTML • جزئیات زمان، کیفیت و پیش‌نمایش فقط در صورت دسترسی به دادهٔ معتبر نمایش داده می‌شود. تصاویر ممکن است به‌علت محدودیت سایت اصلی بارگذاری نشوند.</footer>
 <script>
 "use strict";
-const e = id => document.getElementById(id);
-const state = {payload:null,query:null,controller:null};
-const MAX_SIZE = 8 * 1024 * 1024;
-function safeUrl(value) {
-  try { const u = new URL(String(value || "")); return u.protocol === "http:" || u.protocol === "https:" ? u.href : null; }
-  catch (_) { return null; }
-}
-function apiOrigin(input) {
-  const good = safeUrl(input);
-  if (!good) throw Error("آدرس API باید با http:// یا https:// شروع شود.");
-  const u = new URL(good);
-  if (u.username || u.password || (u.pathname && u.pathname !== "/") || u.search || u.hash)
-    throw Error("آدرس API را فقط به شکل http://127.0.0.1:7000 وارد کنید.");
-  return u.origin;
-}
-function resultType(item) {
-  const classification = String(item?.classification?.content_type || "").toLowerCase();
-  if (classification === "video" || item?.type === "video" || item?.type === "videos") return "video";
-  const url = safeUrl(item?.url);
-  if (url) {
-    const u = new URL(url), host = u.hostname.toLowerCase(), path = u.pathname.toLowerCase();
-    if ((host === "youtube.com" || host.endsWith(".youtube.com")) && (path === "/watch" || path.startsWith("/shorts/") || path.startsWith("/live/"))) return "video";
-    if (host === "youtu.be" || ((host === "vimeo.com" || host === "www.vimeo.com") && /^\/\d+/.test(path))) return "video";
-    if ((host === "bilibili.com" || host.endsWith(".bilibili.com")) && path.includes("/video/")) return "video";
-    if ((host === "dailymotion.com" || host.endsWith(".dailymotion.com")) && path.startsWith("/video/")) return "video";
-  }
-  return "text";
-}
-function durationSeconds(value) {
-  if (typeof value === "number" && Number.isFinite(value) && value >= 0) return value;
-  if (typeof value !== "string" || !/^\d{1,3}:\d{2}(?::\d{2})?$/.test(value.trim())) return null;
-  const parts = value.trim().split(":").map(Number);
-  if (parts.slice(1).some(n => n > 59)) return null;
-  return parts.reduce((acc, n) => acc * 60 + n, 0);
-}
-function videoMetadata(item) {
-  const video = item?.video || {}, media = item?.media || {}, metadata = item?.metadata || {};
-  const times = [item?.duration_seconds, video.duration_seconds, media.duration_seconds, metadata.duration_seconds,
-                 item?.duration, video.duration, media.duration, metadata.duration];
-  let seconds = null;
-  for (const candidate of times) {
-    const duration = durationSeconds(candidate);
-    if (duration !== null) { seconds = duration; break; }
-  }
-  let quality = [item?.resolution, video.resolution, media.resolution, metadata.resolution,
-                 item?.quality, video.quality, media.quality, metadata.quality].find(v => typeof v === "string" && v.trim());
-  let source = quality ? "فیلد JSON" : "";
-  if (!quality) {
-    const height = [video.height, media.height, metadata.height].find(n => Number.isInteger(n) && n >= 240 && n <= 4320);
-    if (height) { quality = height + "p"; source = "فیلد JSON"; }
-  }
-  if (!quality) {
-    const title = String(item?.title || ""), found = title.match(/\b(720p|1080p|1440p|2160p|4k|8k|full\s*hd)\b/i);
-    if (found) { quality = found[1]; source = "صرفاً عنوان (تأییدنشده)"; }
-  }
-  return {seconds, quality:quality || null, source};
-}
-function formatTime(value) {
-  const seconds = Math.floor(value), h = Math.floor(seconds / 3600), m = Math.floor((seconds % 3600) / 60), s = seconds % 60;
-  return (h ? h + ":" + String(m).padStart(2,"0") : String(m)) + ":" + String(s).padStart(2,"0");
-}
-function parseJson(text) {
-  if (!text || !text.trim()) throw Error("ابتدا متن JSON را وارد کنید.");
-  if (text.length > MAX_SIZE) throw Error("حجم متن JSON زیاد است (حداکثر ۸ مگابایت).");
-  let value;
-  try { value = JSON.parse(text); }
-  catch (_) {
-    // Handle JSON copied from a shell, optionally followed by a prompt.
-    let start = text.indexOf('{"query"');
-    if (start < 0) start = text.indexOf("{");
-    let braces = 0, quoted = false, escaped = false, end = -1;
-    for (let i=start; i>=0 && i<text.length; i++) {
-      const c = text[i];
-      if (quoted) {
-        if (escaped) escaped = false;
-        else if (c === "\\") escaped = true;
-        else if (c === '"') quoted = false;
-      } else if (c === '"') quoted = true;
-      else if (c === "{") braces++;
-      else if (c === "}" && --braces === 0) {end = i; break;}
-    }
-    if (end < 0) throw Error("JSON کامل و معتبر پیدا نشد.");
-    try {value = JSON.parse(text.slice(start,end+1));}
-    catch (_) {throw Error("متن واردشده JSON معتبر نیست.");}
-  }
-  if (!value || typeof value !== "object" || Array.isArray(value) || !Array.isArray(value.results))
-    throw Error("ساختار JSON باید شامل آرایهٔ results باشد.");
-  return value;
-}
-function add(parent, tag, text, cls) {
-  const node = document.createElement(tag);
-  node.textContent = String(text);
-  if (cls) node.className = cls;
-  parent.append(node);
-  return node;
-}
-function chip(parent, text, cls) { return add(parent,"span",text,"tag " + (cls || "")); }
-function notify(text, cls) {e("notice").className="notice" + (cls ? " " + cls : "");e("notice").textContent=text;}
-function checkedEngines() {return [...document.querySelectorAll('input[name="engine"]:checked')].map(node => node.value);}
-function queryConfig() {
-  let text = e("query").value.trim();
-  if (!text) throw Error("عبارت جست‌وجو خالی است.");
-  const kind = e("kind").value;
-  if (kind === "video") {
-    text += " video";
-    const quality = e("quality").value;
-    if (quality) text += " " + quality;
-    const min = Number(e("minutes").value);
-    if (min > 0) text += " full length " + (min + 5) + " minutes";
-  }
-  const engines = checkedEngines();
-  if (!engines.length) throw Error("حداقل یک موتور را انتخاب کنید.");
-  const site = e("site").value.trim();
-  if (site && !/^(?:[a-z0-9-]+\.)+[a-z]{2,}$/i.test(site)) throw Error("دامنه را مثل youtube.com وارد کنید.");
-  return {base:apiOrigin(e("api").value),text,engines,site,limit:Number(e("limit").value)};
-}
-function renderSummary() {
-  const data = state.payload, meta = data.meta || {}, requested = Array.isArray(data.query?.engines_requested) ? data.query.engines_requested : [];
-  const responded = Array.isArray(meta.engines_responded) ? meta.engines_responded : [];
-  const failed = Array.isArray(meta.engines_failed) ? meta.engines_failed : [];
-  const metrics = e("metrics"); metrics.replaceChildren();
-  const rows = [[data.results.length,"نتایج این صفحه"],[data.results.filter(item=>resultType(item)==="video").length,"نتایج ویدئویی"],
-                [responded.length + " / " + requested.length,"موتورهای پاسخ‌دهنده"],
-                [Number.isFinite(meta.took_ms)?(meta.took_ms/1000).toFixed(1)+"s":"—","مدت جست‌وجو"]];
-  for (const [value,label] of rows) {
-    const box=add(metrics,"div","","metric");add(box,"strong",value);add(box,"small",label);
-  }
-  const date = meta.requested_at && !Number.isNaN(Date.parse(meta.requested_at)) ? new Date(meta.requested_at).toLocaleString("fa-IR") : "نامشخص";
-  e("request-meta").textContent = "عبارت اجراشده: " + (data.query?.text || "—") + " | زمان درخواست: " + date +
-    " | Request ID: " + (meta.request_id || "—") + " | API: " + (meta.version || "—");
-  const panel = e("engine-status");panel.replaceChildren();
-  for (const engine of requested) chip(panel,engine + (failed.includes(engine)?" ✕":responded.includes(engine)?" ✓":" ؟"),failed.includes(engine)?"warn":"");
-  const errors = Array.isArray(meta.engine_errors) ? meta.engine_errors : [];
-  e("engine-errors").textContent = failed.length ? "موتورهای ناموفق: " + failed.map(name=>{
-    const item = errors.find(err=>err.engine===name);
-    return name + " (" + (item?.message || item?.error || "ناموفق") + ")";
-  }).join(" | ") : "";
-  e("summary").hidden = false;
-}
-function matchResult(item) {
-  const type = resultType(item), view=e("view").value;
-  if (view !== "all" && type !== view) return false;
-  if (type === "video" && Number(e("minutes").value) > 0) {
-    const seconds = videoMetadata(item).seconds;
-    if (seconds !== null && seconds < Number(e("minutes").value)*60) return false;
-    if (seconds === null && e("strict").checked) return false;
-  }
-  return true;
-}
-function cardFor(item) {
-  const card = document.createElement("article");card.className="card";
-  const type=resultType(item),tags=add(card,"div","","tags");
-  chip(tags,type==="video"?"ویدئو":"متن / وب",type==="video"?"video":"");
-  if (item.engine) chip(tags,item.engine);
-  if (Number.isInteger(item.rank)) chip(tags,"رتبه "+item.rank);
-  if (item.type === "ad") chip(tags,"تبلیغ","warn");
-  const link = safeUrl(item.url), title = add(card,link?"a":"strong",item.title || "بدون عنوان");
-  if (link) {title.href=link;title.target="_blank";title.rel="noopener noreferrer";}
-  if (link || item.display_url) add(card,"div",item.display_url || link,"url");
-  if (item.snippet) add(card,"p",item.snippet);
-  if (type === "video") {
-    const v = videoMetadata(item), details = add(card,"div","","tags");
-    chip(details,"مدت: "+(v.seconds === null?"نامشخص":formatTime(v.seconds)+" • فیلد JSON"),v.seconds === null?"warn":"video");
-    chip(details,"کیفیت: "+(v.quality || "نامشخص")+(v.source?" • "+v.source:""),v.source==="فیلد JSON"?"video":"warn");
-  }
-  if (item.classification?.content_type) add(card,"div","طبقه‌بندی API: "+item.classification.content_type,"information");
-  return card;
-}
-function renderResults() {
-  if (!state.payload) return;
-  const selected = state.payload.results.filter(matchResult),container=e("cards");container.replaceChildren();
-  if (!selected.length) add(container,"div","نتیجه‌ای مطابق فیلتر فعلی وجود ندارد. نوع نتایج یا فیلتر زمان را تغییر دهید.","empty");
-  else for (const item of selected) container.append(cardFor(item));
-  e("count").textContent=selected.length+" نتیجه از "+state.payload.results.length+" مورد | نامشخص بودن مدت/کیفیت به معنای کم‌بودن آن نیست.";
-  e("raw").textContent=JSON.stringify(state.payload,null,2);
-  e("next").hidden=!(state.query && state.payload.pagination?.has_more && Number.isInteger(state.payload.pagination?.next_start));
-  e("output").hidden=false;
-}
-function showData(data,source) {
-  state.payload=data;
-  if (source!=="live") state.query=null;
-  e("view").value=source==="live"?(e("kind").value==="all"?"all":e("kind").value):"all";
-  renderSummary();renderResults();
-  const failed=Array.isArray(data.meta?.engines_failed)?data.meta.engines_failed:[];
-  notify(data.results.length+" نتیجه بارگذاری شد."+(failed.length?" موتورهای ناموفق: "+failed.join("، "):""),failed.length?"warn":"");
-}
-async function search(offset) {
-  const cfg=state.query;if(!cfg)return;
-  const url=new URL("/mega/search",cfg.base);
-  url.searchParams.set("text",cfg.text);
-  url.searchParams.set("engines",cfg.engines.join(","));
-  url.searchParams.set("mode","balanced");
-  url.searchParams.set("limit",String(cfg.limit));
-  url.searchParams.set("start",String(offset));
-  if (cfg.site) url.searchParams.set("site",cfg.site);
-  const controller=new AbortController();state.controller=controller;
-  e("submit").disabled=true;e("cancel").hidden=false;e("next").disabled=true;
-  notify("در حال جست‌وجو در "+cfg.engines.length+" موتور...");
-  const timer=setTimeout(()=>controller.abort(),90000);
-  try {
-    const response=await fetch(url.href,{signal:controller.signal,headers:{Accept:"application/json"}});
-    const text=await response.text();
-    if (!response.ok) {
-      let detail="";try{const err=JSON.parse(text);detail=err.message || err.error || "";}catch(_){}
-      throw Error("HTTP "+response.status+" "+detail);
-    }
-    showData(parseJson(text),"live");
-  } catch(err) {
-    notify(err?.name==="AbortError"?"درخواست لغو شد یا از محدودیت زمانی گذشت.":
-      "خطا: "+err.message+"؛ روشن بودن سرویس، آدرس API و CORS را بررسی کنید.","error");
-  } finally {
-    clearTimeout(timer);
-    if (state.controller===controller) state.controller=null;
-    e("submit").disabled=false;e("cancel").hidden=true;e("next").disabled=false;
-  }
-}
-function init() {
-  e("search-form").addEventListener("submit",event=>{
-    event.preventDefault();if(state.controller)return;
-    try{state.query=queryConfig();search(0);}catch(err){notify(err.message,"error");}
-  });
-  e("kind").addEventListener("change",()=>{
-    const isVideo=e("kind").value==="video";e("minutes").disabled=!isVideo;e("quality").disabled=!isVideo;
-  });
-  e("view").addEventListener("change",renderResults);
-  e("strict").addEventListener("change",renderResults);
-  e("minutes").addEventListener("change",renderResults);
-  e("cancel").addEventListener("click",()=>state.controller?.abort());
-  e("next").addEventListener("click",()=>{if(state.payload?.pagination)search(state.payload.pagination.next_start);});
-  e("parse").addEventListener("click",()=>{
-    if(state.controller)state.controller.abort();
-    try{showData(parseJson(e("json-input").value),"offline");}catch(err){notify(err.message,"error");}
-  });
-  e("json-file").addEventListener("change",async event=>{
-    const file=event.target.files?.[0];if(!file)return;
-    try{if(file.size>MAX_SIZE)throw Error("فایل بزرگ‌تر از ۸ مگابایت است.");
-      const text=await file.text();e("json-input").value=text;showData(parseJson(text),"offline");
-    }catch(err){notify(err.message,"error");}finally{event.target.value="";}
-  });
-  e("export").addEventListener("click",()=>{
-    if(!state.payload)return;
-    const blob=new Blob([JSON.stringify(state.payload,null,2)],{type:"application/json"});
-    const url=URL.createObjectURL(blob),a=document.createElement("a");
-    a.href=url;a.download="openserp-results.json";document.body.append(a);a.click();a.remove();
-    setTimeout(()=>URL.revokeObjectURL(url),1000);
-  });
-}
-if(typeof document!=="undefined" && document.getElementById("search-form"))init();
+const PAGE_SIZE=200,API_LIMIT=100,MAX_AUTO_FETCH=6,MAX_JSON_SIZE=20*1024*1024;
+const $=id=>document.getElementById(id);
+const state={config:null,source:null,entries:[],responses:[],seen:new Set(),cursor:0,visited:new Set(),more:false,view:"all",page:0,controller:null,requestToken:0,problem:null};
+function safeUrl(value){try{const u=new URL(String(value||""));return ["http:","https:"].includes(u.protocol)?u.href:null}catch{return null}}
+function apiOrigin(value){const url=safeUrl(value);if(!url)throw Error("آدرس API باید HTTP یا HTTPS باشد.");const u=new URL(url);if(u.username||u.password||u.pathname!=="/"||u.search||u.hash)throw Error("آدرس API را بدون مسیر یا اطلاعات ورود وارد کنید.");return u.origin}
+function textEl(parent,tag,content,cls){const el=document.createElement(tag);el.textContent=String(content??"");if(cls)el.className=cls;parent.append(el);return el}
+function badge(parent,label,cls=""){return textEl(parent,"span",label,"badge "+cls)}
+function toast(message,tone=""){const n=$("notice");n.textContent=message;n.className="toast"+(tone?" "+tone:"")}
+function resultType(item){if(item?.image && typeof item.image==="object"||item?.type==="image")return "image";const type=String(item?.classification?.content_type||"").toLowerCase();if(type==="video"||item?.type==="video"||item?.type==="videos")return "video";const url=safeUrl(item?.url);if(url){const u=new URL(url),h=u.hostname.toLowerCase(),p=u.pathname.toLowerCase();if((h==="youtube.com"||h.endsWith(".youtube.com"))&&(p==="/watch"||p.startsWith("/shorts/")||p.startsWith("/live/")))return "video";if(h==="youtu.be"||h==="vimeo.com"&&/^\/\d+/.test(p)||h.endsWith(".bilibili.com")&&p.includes("/video/")||h.endsWith(".dailymotion.com")&&p.startsWith("/video/"))return "video"}return "text"}
+function clock(value){if(typeof value==="number"&&Number.isFinite(value)&&value>=0)return value;if(typeof value!=="string"||!/^\d{1,3}:\d{2}(?::\d{2})?$/.test(value.trim()))return null;const p=value.trim().split(":").map(Number);return p.slice(1).some(x=>x>59)?null:p.reduce((a,b)=>a*60+b,0)}
+function videoInfo(item){const v=item?.video||{},m=item?.media||{},meta=item?.metadata||{};let seconds=null;for(const value of [item?.duration_seconds,v.duration_seconds,m.duration_seconds,meta.duration_seconds,item?.duration,v.duration,m.duration,meta.duration]){const n=clock(value);if(n!==null){seconds=n;break}}let quality=[item?.resolution,v.resolution,m.resolution,meta.resolution,item?.quality,v.quality,m.quality,meta.quality].find(x=>typeof x==="string"&&x.trim());let provenance=quality?"فیلد JSON":"";if(!quality){const height=[v.height,m.height,meta.height].find(x=>Number.isInteger(x)&&x>=240&&x<=4320);if(height){quality=height+"p";provenance="فیلد JSON"}}if(!quality){const hint=String(item?.title||"").match(/\b(720p|1080p|1440p|2160p|4k|8k|full\s*hd)\b/i);if(hint){quality=hint[1];provenance="عنوان (تأییدنشده)"}}return {seconds,quality:quality||null,provenance}}
+function timeText(n){const x=Math.floor(n),h=Math.floor(x/3600),m=Math.floor(x%3600/60),s=x%60;return (h?h+":"+String(m).padStart(2,"0"):String(m))+":"+String(s).padStart(2,"0")}
+function thumbnail(item){if(item?.image&&typeof item.image==="object")return safeUrl(item.image.thumbnail)||safeUrl(item.image.url);for(const value of [item?.thumbnail?.url,item?.thumbnail,item?.video?.thumbnail,item?.media?.thumbnail,item?.metadata?.thumbnail,item?.og_image]){const url=safeUrl(value);if(url)return url}if(resultType(item)==="video"){const url=safeUrl(item.url);if(url){const u=new URL(url);let id="";if(u.hostname==="youtu.be")id=u.pathname.slice(1).split("/")[0];else if(u.hostname==="youtube.com"||u.hostname.endsWith(".youtube.com")){id=u.searchParams.get("v")||(/\/(?:shorts|live|embed)\/([^/?]+)/.exec(u.pathname)||[])[1]||""}if(/^[\w-]{11}$/.test(id))return "https://i.ytimg.com/vi/"+id+"/hqdefault.jpg"}}return null}
+function destination(item){return safeUrl(item?.source?.page_url)||safeUrl(item?.url)||safeUrl(item?.image?.url)}
+function identity(item,origin){const url=resultType(item)==="image"?(safeUrl(item?.image?.url)||destination(item)||""):(destination(item)||"");return [origin,item.engine||"",url||item.id||item.title||"",item.type||""].join("|")}
+function parsePayload(value){if(!value||typeof value!=="object"||Array.isArray(value))throw Error("JSON باید یک شیء باشد.");if(Array.isArray(value.results))return {responses:[value],source:"single"};if(value.schema==="openserp.batch-merged.v1"&&Array.isArray(value.items)){const responses=value.items.map((x,i)=>({data:x.response,origin:"batch-"+(x.index??i+1)})).filter(x=>x.data&&Array.isArray(x.data.results));if(!responses.length)throw Error("فایل ادغام‌شده فاقد نتایج قابل نمایش است.");return {responses,source:"merged"}}if(value.schema==="openserp.ui-snapshot.v1"&&Array.isArray(value.responses)){const responses=value.responses.filter(x=>x&&Array.isArray(x.results));if(!responses.length)throw Error("Snapshot فاقد پاسخ معتبر است.");return {responses,source:"snapshot"}}throw Error("ساختار JSON شناخته‌شده نیست؛ باید results یا merged.json باشد.")}
+function parseInput(text){if(!text||!text.trim())throw Error("متن JSON خالی است.");if(text.length>MAX_JSON_SIZE)throw Error("حجم JSON بیش از ۲۰ مگابایت است.");try{return parsePayload(JSON.parse(text))}catch(error){if(!(error instanceof SyntaxError))throw error;const start=text.indexOf('{"query"');const index=start>=0?start:text.indexOf("{");if(index<0)throw Error("JSON قابل تشخیص نیست.");let depth=0,inString=false,escaped=false;for(let i=index;i<text.length;i++){const c=text[i];if(inString){if(escaped)escaped=false;else if(c==="\\")escaped=true;else if(c==='"')inString=false}else if(c==='"')inString=true;else if(c==="{")depth++;else if(c==="}"&&--depth===0){try{return parsePayload(JSON.parse(text.slice(index,i+1)))}catch{break}}}throw Error("متن JSON معتبر یا کامل نیست.")}}
+function configs(){const term=$("query").value.trim();if(!term)throw Error("عبارت جست‌وجو خالی است.");const engines=[...document.querySelectorAll('input[name="engine"]:checked')].map(n=>n.value);if(!engines.length)throw Error("حداقل یک موتور را انتخاب کنید.");const kind=$("kind").value;let text=term;if(kind==="video"){text+=" video";if($("quality").value)text+=" "+$("quality").value;const minutes=Number($("minutes").value);if(minutes>0)text+=" full length "+minutes+" minutes"}const site=$("site").value.trim();if(site&&!/^(?:[a-z\d-]+\.)+[a-z]{2,}$/i.test(site))throw Error("دامنه را مانند youtube.com وارد کنید.");return {base:apiOrigin($("api").value),text,engines,kind,site,limit:API_LIMIT}}
+function reset(source,config=null){state.requestToken++;state.controller?.abort();state.controller=null;state.entries=[];state.responses=[];state.seen=new Set();state.visited=new Set();state.cursor=0;state.more=source==="live";state.view="all";state.page=0;state.source=source;state.config=config;state.problem=null;$("export").disabled=true;syncTabs();render()}
+function ingest(payload,origin){if(!payload||!Array.isArray(payload.results))throw Error("پاسخ API فیلد results معتبر ندارد.");state.responses.push(payload);let added=0;for(const item of payload.results){if(!item||typeof item!=="object"||Array.isArray(item))continue;const key=identity(item,origin);if(state.seen.has(key))continue;state.seen.add(key);state.entries.push({item,origin});added++}return added}
+function filtered(){return state.entries.filter(entry=>{const type=resultType(entry.item);if(state.view!=="all"&&type!==state.view)return false;if($("strict").checked&&type==="video"&&Number($("minutes").value)>0){const sec=videoInfo(entry.item).seconds;if(sec===null||sec<Number($("minutes").value)*60)return false}return true})}
+function statusSummary(){const all=state.entries;return {total:all.length,videos:all.filter(x=>resultType(x.item)==="video").length,images:all.filter(x=>resultType(x.item)==="image").length,engines:new Set(all.map(x=>x.item.engine).filter(Boolean)).size}}
+function drawStats(){const box=$("stats");box.replaceChildren();const s=statusSummary();for(const [num,label] of [[s.total,"نتیجهٔ دریافت‌شده"],[s.videos,"ویدئو"],[s.images,"تصویر"],[s.engines,"موتور دارای نتیجه"]]){const card=textEl(box,"div","","stat");textEl(card,"strong",num.toLocaleString("fa-IR"));textEl(card,"span",label)}const errors=$("engine-errors");errors.replaceChildren();const reported=new Set();for(const payload of state.responses){const failed=Array.isArray(payload.meta?.engines_failed)?payload.meta.engines_failed:[];for(const name of failed){const key=name+" "+(payload.query?.text||"");if(reported.has(key))continue;reported.add(key);const detail=Array.isArray(payload.meta?.engine_errors)?payload.meta.engine_errors.find(x=>x.engine===name):null;badge(errors,name+" • "+(detail?.error||"ناموفق"),"amber")}}}
+function picture(item,type){const wrap=textEl(document.createDocumentFragment(),"div","","preview");const src=thumbnail(item);if(src){const image=document.createElement("img");image.loading="lazy";image.decoding="async";image.referrerPolicy="no-referrer";image.alt="پیش‌نمایش "+String(item.title||"نتیجه").slice(0,90);image.src=src;image.addEventListener("error",()=>{image.remove();drawFallback(wrap,type)});wrap.append(image)}else drawFallback(wrap,type);textEl(wrap,"span",type==="video"?"VIDEO":type==="image"?"IMAGE":"WEB","preview-type");if(type==="video"){const overlay=textEl(wrap,"div","","play");textEl(overlay,"span","▶");const seconds=videoInfo(item).seconds;if(seconds!==null)textEl(wrap,"span",timeText(seconds),"duration")}return wrap}
+function drawFallback(wrap,type){if(wrap.querySelector(".fallback"))return;const fallback=textEl(wrap,"div","","fallback");fallback.innerHTML=type==="video"?'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="3"></rect><path d="m10 9 5 3-5 3z"></path></svg>':type==="image"?'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"></rect><circle cx="9" cy="9" r="1.5"></circle><path d="m3 18 6-6 4 4 3-3 5 5"></path></svg>':'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"></rect><path d="M9 8h6M9 12h6M9 16h4"></path></svg>';textEl(fallback,"span",type==="video"?"پیش‌نمایش موجود نیست":type==="image"?"تصویر بارگذاری نشد":"صفحهٔ وب")}
+function card(entry){const item=entry.item,type=resultType(item),box=document.createElement("article");box.className="card";const link=destination(item);const visual=picture(item,type);if(link){const anchor=document.createElement("a");anchor.href=link;anchor.target="_blank";anchor.rel="noopener noreferrer";anchor.setAttribute("aria-label","بازکردن "+String(item.title||"نتیجه"));anchor.append(visual);box.append(anchor)}else box.append(visual);const body=textEl(box,"div","","card-body");const title=textEl(body,link?"a":"strong",item.title||"بدون عنوان","card-title");if(link){title.href=link;title.target="_blank";title.rel="noopener noreferrer"}if(item.snippet)textEl(body,"p",item.snippet,"snippet");else textEl(body,"p",item.image?.url?"نمایش تصویر و منبع":"توضیحی برای این نتیجه موجود نیست.","snippet");const bits=textEl(body,"div","","metadata");if(item.engine)badge(bits,item.engine);if(Number.isFinite(item.rank))badge(bits,"رتبه "+item.rank);if(type==="video"){const info=videoInfo(item);badge(bits,"مدت: "+(info.seconds===null?"نامشخص":timeText(info.seconds)),info.seconds===null?"amber":"green");badge(bits,"کیفیت: "+(info.quality||"نامشخص"),info.provenance!=="فیلد JSON"?"amber":"green");if(info.provenance&&info.provenance!=="فیلد JSON")badge(bits,"تأییدنشده","amber")}if(type==="image"&&Number.isFinite(item.image?.width))badge(bits,item.image.width+" × "+(item.image.height||"?"));const meta=textEl(body,"div","","meta");let host="";try{host=new URL(link).hostname}catch{host=item.domain||""}textEl(meta,"span",host||"منبع نامشخص","domain");if(entry.origin.startsWith("batch-"))badge(meta,"Batch #"+entry.origin.slice(6));return box}
+function render(){const rows=filtered(),start=state.page*PAGE_SIZE,pageRows=rows.slice(start,start+PAGE_SIZE),container=$("cards");container.replaceChildren();const source=state.source;$("results-section").hidden=!source;if(!source)return;drawStats();const end=Math.min(rows.length,start+PAGE_SIZE);$("results-caption").textContent=`نمایش ${rows.length?start+1:0} تا ${end} از ${rows.length} مورد دریافت‌شده • ${state.responses.length} پاسخ JSON ذخیره‌شده`;
+if(pageRows.length===0)textEl(container,"div",state.problem||"نتیجه‌ای برای این فیلتر وجود ندارد. فیلترها یا موتورهای انتخابی را تغییر دهید.","empty");else{const frag=document.createDocumentFragment();for(const entry of pageRows)frag.append(card(entry));container.append(frag)}$("page-label").textContent=(state.page+1).toLocaleString("fa-IR")+" / "+Math.max(1,Math.ceil(rows.length/PAGE_SIZE)).toLocaleString("fa-IR");$("prev").disabled=!!state.controller||state.page===0;$("next").disabled=!!state.controller||(!(rows.length>(state.page+1)*PAGE_SIZE)&&!(source==="live"&&state.more));$("export").disabled=!state.responses.length;const raw=state.responses.at(-1);$("raw").textContent=raw?JSON.stringify(raw,null,2):""}
+function syncTabs(){for(const tab of document.querySelectorAll(".tab")){const active=tab.dataset.view===state.view;tab.classList.toggle("active",active);tab.setAttribute("aria-selected",active?"true":"false")}}
+async function fetchOne(){const cfg=state.config;if(!cfg||!state.more)return 0;const offset=state.cursor;if(state.visited.has(offset)){state.more=false;return 0}const endpoint=cfg.kind==="image"?"/mega/image":"/mega/search",url=new URL(endpoint,cfg.base);for(const [k,v] of Object.entries({text:cfg.text,engines:cfg.engines.join(","),mode:"balanced",limit:String(API_LIMIT),start:String(offset),dedupe:"false",merge:"true"}))url.searchParams.set(k,v);if(cfg.site)url.searchParams.set("site",cfg.site);const controller=new AbortController();state.controller=controller;const token=state.requestToken;const timeout=setTimeout(()=>controller.abort(),90000);render();$("busy-indicator").hidden=false;$("submit").disabled=true;$("cancel").hidden=false;
+try{const response=await fetch(url.href,{signal:controller.signal,headers:{Accept:"application/json"}});const raw=await response.text();if(token!==state.requestToken)return 0;let payload;try{payload=JSON.parse(raw)}catch{throw Error("پاسخ سرور JSON معتبر نیست.")}if(!response.ok)throw Error("HTTP "+response.status+": "+(payload?.message||payload?.error||"خطای سرویس"));if(!payload||!Array.isArray(payload.results))throw Error("پاسخ سرور فاقد results[] است.");const added=ingest(payload,"live");state.visited.add(offset);const next=Number(payload.pagination?.next_start);const reported=payload.pagination?.has_more===true;state.cursor=Number.isSafeInteger(next)&&next>offset?next:offset+API_LIMIT;state.more=reported&&added>0&&!state.visited.has(state.cursor);state.problem=null;const failed=Array.isArray(payload.meta?.engines_failed)?payload.meta.engines_failed:[];toast(`پاسخ JSON دریافت شد: ${payload.results.length} نتیجه، ${added} مورد جدید${failed.length?"؛ موتورهای ناموفق: "+failed.join("، "):""}.`,failed.length?"warn":"");return added
+}catch(err){if(token===state.requestToken){state.problem=err?.name==="AbortError"?"درخواست لغو شد یا زمان آن به پایان رسید.":err.message;toast("بازیابی نتایج جدید ناموفق بود: "+state.problem+" — نتایج قبلی محفوظ هستند.","error")}return -1}finally{clearTimeout(timeout);if(state.controller===controller){state.controller=null;$("busy-indicator").hidden=true;$("submit").disabled=false;$("cancel").hidden=true;render()}}}
+async function ensurePage(target){if(state.controller)return false;let calls=0;while(state.source==="live"&&state.more&&filtered().length<(target+1)*PAGE_SIZE&&calls<MAX_AUTO_FETCH){const added=await fetchOne();calls++;if(added<0)return false;if(added===0)break}if(target*PAGE_SIZE<filtered().length){state.page=target;render();return true}if(target===0){state.page=0;render();return true}toast(state.more?"برای این صفحه هنوز نتیجهٔ کافی دریافت نشده است. دوباره «صفحهٔ بعد» را بزنید.":"نتیجهٔ دیگری در پاسخ‌های API وجود ندارد.","warn");render();return false}
+function openPayload(data){reset("file");for(let i=0;i<data.responses.length;i++){const value=data.responses[i],payload=value.data||value,origin=value.origin||"import-"+i;ingest(payload,origin)}state.more=false;render();toast(`${state.entries.length} نتیجه از ${state.responses.length} پاسخ JSON خوانده شد. اکنون مرور صفحات آفلاین است.`)}
+async function probe(){const value=$("api").value;let base;try{base=apiOrigin(value)}catch{return}const status=$("health"),label=$("health-label");status.className="status";label.textContent="در حال بررسی API";const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),3500);try{const res=await fetch(base+"/health",{signal:controller.signal});status.className="status "+(res.ok?"online":"offline");label.textContent=res.ok?"API فعال":"API پاسخ ناموفق"}catch{status.className="status offline";label.textContent="اتصال API برقرار نیست"}finally{clearTimeout(timer)}}
+function init(){$("search-form").addEventListener("submit",async event=>{event.preventDefault();let cfg;try{cfg=configs()}catch(err){toast(err.message,"error");return}reset("live",cfg);state.view=cfg.kind==="video"?"video":cfg.kind==="image"?"image":"all";syncTabs();render();await ensurePage(0)});$("cancel").addEventListener("click",()=>state.controller?.abort());$("api").addEventListener("change",probe);$("kind").addEventListener("change",()=>{const video=$("kind").value==="video";$("quality").disabled=!video;$("minutes").disabled=!video});for(const tab of document.querySelectorAll(".tab"))tab.addEventListener("click",async()=>{state.view=tab.dataset.view;state.page=0;syncTabs();render();if(state.source==="live"&&state.more)await ensurePage(0)});$("strict").addEventListener("change",()=>{state.page=0;render()});$("minutes").addEventListener("change",()=>{state.page=0;render()});$("prev").addEventListener("click",()=>{if(state.page>0){state.page--;render()}});$("next").addEventListener("click",async()=>{await ensurePage(state.page+1)});$("parse").addEventListener("click",()=>{try{openPayload(parseInput($("json-input").value))}catch(err){toast(err.message,"error")}});$("json-file").addEventListener("change",async event=>{const file=event.target.files?.[0];if(!file)return;try{if(file.size>MAX_JSON_SIZE)throw Error("فایل بیش از ۲۰ مگابایت است.");const raw=await file.text();openPayload(parseInput(raw))}catch(err){toast(err.message,"error")}finally{event.target.value=""}});$("export").addEventListener("click",()=>{if(!state.responses.length)return;const snapshot={schema:"openserp.ui-snapshot.v1",created_at:new Date().toISOString(),search:state.config||null,responses:state.responses},blob=new Blob([JSON.stringify(snapshot,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="openserp-results.json";document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)});probe()}
+if(typeof document!=="undefined"&&$("search-form"))init();
 </script>
 </body>
 </html>

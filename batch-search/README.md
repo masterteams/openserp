@@ -52,3 +52,13 @@ Each JSON retains OpenSERP's `results`, `query`, `meta`, and `engine_errors` (wh
 `merge.py` combines every planned item into one `items` array, preserving per-input OpenSERP JSON and a summary of results/errors by engine. It **does not deduplicate** results. It detects missing files (for example after Ctrl-C) rather than silently dropping them; use `--allow-partial` if you deliberately want a merge of completed items only. The merge operation does not make API calls. Existing merged output files are preserved unless you explicitly pass `--overwrite`. Results are excluded from Git by `batch-search/.gitignore`.
 
 **Data protection:** CSV terms and search results remain in local JSON files. Do not commit batches containing sensitive search terms, private URLs, or proxy information. If the API is on another host, use its reachable URL and restrict network access appropriately.
+
+## Example CSV bundled in this repository
+
+Use [`example.csv`](./example.csv) for an immediate smoke run:
+
+```bash
+python3 batch-search/search.py batch-search/example.csv
+```
+
+The CSV contains five UTF-8 rows without a header, including a quoted comma-containing entry and a Persian term. Each row is independently searched. Edit or copy this example for your own terms; the standard batch default remains video, 1080p keyword, 15-minute keyword, all six engines and `limit=100` per engine.
