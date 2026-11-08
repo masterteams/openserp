@@ -23,3 +23,10 @@
   - REQUESTED: video / Full HD by default; all 6 engines and `limit=100` per engine; one JSON per CSV row; merged JSON preserving raw results and partial failures.
   - PASS: Python syntax validation and six focused tests using a local fake OpenSERP API, including quoted CSV, HTTP failure recording, merge, image/text modes and missing-file protection.
   - NOT RUN: live 100-result searches on the user's host; engine-level availability and video metadata are not guaranteed by the API.
+
+## Search HTML UX and pagination
+
+- [~] **UI-002 — Upgrade single-file search HTML and add a sample CSV.**
+  - Implemented: responsive search cards; YouTube and image-source thumbnails with fallback; live API status, JSON import/export (single, snapshot, merged batch); persistent API responses and 200-item client pages while respecting OpenSERP limit=100 per engine.
+  - PASS: Node script syntax + 19 parser/security/metadata checks; Playwright Chromium mocked-API test for Next/Previous, 200-card pages, last page, HTTP 502 retry, image import and absence of JS page errors; Python csv.reader verified five one-column UTF-8 records.
+  - NOT RUN: live host browser-to-OpenSERP integration and external thumbnail availability; direct file:// browser navigation blocked by the test environment administrator.

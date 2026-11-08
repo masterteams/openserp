@@ -68,11 +68,13 @@ The scripts use `docker-compose.yaml` plus `docker-compose.local.yaml`. The loca
 
 ## Standalone HTML search dashboard
 
-Open [`search.html`](./search.html) directly in your browser while OpenSERP is running (for example, `./deploy.sh status`). **No separate HTML server, dependencies, or build step** are needed. The page uses `/mega/search` with `mode=balanced` to query the selected engines, shows video/web results and per-engine failures, and parses pasted/uploaded OpenSERP JSON without a live connection.
+Open [`search.html`](./search.html) in the browser while OpenSERP is running; no separate frontend server is required. The responsive search page features video thumbnails (YouTube thumbnails where detectable), image thumbnails from `/mega/image`, source cards for web pages, six selectable engines, result filters and API health/errors.
 
-By default it connects to `http://127.0.0.1:7000` **on the browser's machine**; enter a reachable host URL when viewing the file on another computer. The default `config.yaml` enables CORS with `allow_origins: "*"`; a restrictive CORS configuration can block direct `file://` access. The API must already be running for live search.
+**Pagination:** the UI displays **up to 200 items per page**, assembled from cached JSON API responses; **each `/mega/search`/`/mega/image` request sends `limit=100`** because OpenSERP's backend maximum is 100 **per engine**. The UI requests further API pages only when necessary and caches prior responses for Back/Next. A failed next-page request leaves the previous page intact and can be retried. Counts may be lower when engines return fewer matches.
 
-**Metadata accuracy:** OpenSERP v2.1 does not guarantee video duration or resolution fields. The page shows duration only when a structured duration field is available and labels resolution mentioned in a title as unverified. The requested duration/resolution are added as search keywords, not enforced server-side. Use the optional strict filter to hide videos without a structured duration.
+Use **Download JSON** to save a self-contained snapshot of all API responses received by the UI. You can import an OpenSERP JSON envelope, a saved UI snapshot, or `merged.json` produced by [`batch-search/merge.py`](./batch-search/merge.py) and browse the results locally. Download is explicit: browsers do not silently write API responses to disk.
+
+**Media accuracy:** video quality and duration controls contribute keywords to the query, not certified video filters. Structured duration/resolution is displayed when provided; title-only quality hints are marked unverified. Some thumbnails may fail because of third-party restrictions. Direct `file://` use requires the API's CORS policy to allow the page's origin (shipped default is `*`); `127.0.0.1` means the browser's own computer.
 
 
 ## CSV batch search and JSON merge
@@ -80,7 +82,7 @@ By default it connects to `http://127.0.0.1:7000` **on the browser's machine**; 
 Run many queries from a **single-column UTF-8 CSV** file with [`batch-search/search.py`](./batch-search/search.py). Each CSV row creates a separate `item-*.json`; [`batch-search/merge.py`](./batch-search/merge.py) combines the run into one JSON with query-level results and engine status.
 
 ```bash
-python3 batch-search/search.py keywords.csv  # default video, 1080p, 15 min keyword, all engines, limit=100 per engine
+python3 batch-search/search.py batch-search/example.csv  # sample CSV; video, 1080p, 15 min, all engines, limit=100
 python3 batch-search/merge.py batch-search/results/<printed-run-folder>
 ```
 
