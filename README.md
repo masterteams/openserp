@@ -75,6 +75,17 @@ By default it connects to `http://127.0.0.1:7000` **on the browser's machine**; 
 **Metadata accuracy:** OpenSERP v2.1 does not guarantee video duration or resolution fields. The page shows duration only when a structured duration field is available and labels resolution mentioned in a title as unverified. The requested duration/resolution are added as search keywords, not enforced server-side. Use the optional strict filter to hide videos without a structured duration.
 
 
+## CSV batch search and JSON merge
+
+Run many queries from a **single-column UTF-8 CSV** file with [`batch-search/search.py`](./batch-search/search.py). Each CSV row creates a separate `item-*.json`; [`batch-search/merge.py`](./batch-search/merge.py) combines the run into one JSON with query-level results and engine status.
+
+```bash
+python3 batch-search/search.py keywords.csv  # default video, 1080p, 15 min keyword, all engines, limit=100 per engine
+python3 batch-search/merge.py batch-search/results/<printed-run-folder>
+```
+
+The scripts use only Python 3.10+ standard library and an already running OpenSERP server. Requests use `/mega/search` with `mode=balanced&dedupe=false&merge=true`; `--type image` uses `/mega/image`, and `--type text` or `--type all` uses web results. The requested 100 is an **upper bound**, not a guaranteed count. HD and duration are **query keywords**, not verified media metadata. For options, errors, recovery, and formats see [batch-search/README.md](./batch-search/README.md).
+
 ## Use with AI Agents
 
 ### MCP: Claude Code, Codex, Cursor, Claude Desktop
