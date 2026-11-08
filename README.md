@@ -66,6 +66,15 @@ The scripts use `docker-compose.yaml` plus `docker-compose.local.yaml`. The loca
 
 **Network security:** the original Compose file publishes port 7000 on all host interfaces. Restrict access with your host firewall or change its port mapping if this API should only be reachable locally. No changes to Docker Engine or system packages are made by the installer.
 
+## Standalone HTML search dashboard
+
+Open [`search.html`](./search.html) directly in your browser while OpenSERP is running (for example, `./deploy.sh status`). **No separate HTML server, dependencies, or build step** are needed. The page uses `/mega/search` with `mode=balanced` to query the selected engines, shows video/web results and per-engine failures, and parses pasted/uploaded OpenSERP JSON without a live connection.
+
+By default it connects to `http://127.0.0.1:7000` **on the browser's machine**; enter a reachable host URL when viewing the file on another computer. The default `config.yaml` enables CORS with `allow_origins: "*"`; a restrictive CORS configuration can block direct `file://` access. The API must already be running for live search.
+
+**Metadata accuracy:** OpenSERP v2.1 does not guarantee video duration or resolution fields. The page shows duration only when a structured duration field is available and labels resolution mentioned in a title as unverified. The requested duration/resolution are added as search keywords, not enforced server-side. Use the optional strict filter to hide videos without a structured duration.
+
+
 ## Use with AI Agents
 
 ### MCP: Claude Code, Codex, Cursor, Claude Desktop
