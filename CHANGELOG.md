@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added standard-library Python CSV batch search and independent JSON merge tools, with per-query outputs, run manifests, failure accounting and focused tests.
 - Added a dependency-free, direct-open `search.html` search UI for multi-engine video/web results and offline JSON parsing, with clearly labeled unknown/unverified video metadata.
 - Added an opt-in local Docker Compose build override without changing the existing `docker-compose.yaml`.
 - Added `install.sh` to build OpenSERP from the current directory, start it in Docker, and wait for a healthy service.

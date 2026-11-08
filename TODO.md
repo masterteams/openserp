@@ -15,3 +15,11 @@
   - PASS: JavaScript compile and 17 focused mocked-DOM/parser/security checks against the GitHub blob.
   - NOT RUN: real browser fetch against the user's Docker host (no access to its browser/network); user should verify once after pull.
   - Constraint: original API provides no guaranteed structured video duration/resolution. The UI does not invent these values.
+
+## Batch CSV search
+
+- [~] **BATCH-001 — Search each CSV row and merge JSON results.**
+  - Implemented: `batch-search/search.py`, `batch-search/merge.py`, `batch-search/README.md`, deterministic local HTTP tests, and gitignored output directory.
+  - REQUESTED: video / Full HD by default; all 6 engines and `limit=100` per engine; one JSON per CSV row; merged JSON preserving raw results and partial failures.
+  - PASS: Python syntax validation and six focused tests using a local fake OpenSERP API, including quoted CSV, HTTP failure recording, merge, image/text modes and missing-file protection.
+  - NOT RUN: live 100-result searches on the user's host; engine-level availability and video metadata are not guaranteed by the API.
