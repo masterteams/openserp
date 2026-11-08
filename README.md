@@ -49,6 +49,23 @@ Prebuilt binaries for Linux, macOS and Windows are on the [releases page](https:
 
 </details>
 
+## Run a local source checkout with Docker
+
+From the root of the checked-out OpenSERP repository (your current `$PWD`), with Docker Engine and Docker Compose v2 installed:
+
+```bash
+./install.sh          # build from this checkout, start, and wait for /health
+./deploy.sh status    # show running/stopped container and health
+./deploy.sh log       # follow the last 100 log lines (Ctrl-C to exit)
+./deploy.sh stop      # stop without deleting the container
+./deploy.sh start     # start without rebuilding
+./deploy.sh restart   # restart the existing container
+```
+
+The scripts use `docker-compose.yaml` plus `docker-compose.local.yaml`. The local override builds `openserp:local` from `$PWD/Dockerfile` while retaining the original service settings, including the bind-mounted `$PWD/config.yaml`, port 7000 and 2 GB shared memory. Re-run `./install.sh` after source or configuration changes to rebuild/recreate the service; lifecycle commands do not rebuild.
+
+**Network security:** the original Compose file publishes port 7000 on all host interfaces. Restrict access with your host firewall or change its port mapping if this API should only be reachable locally. No changes to Docker Engine or system packages are made by the installer.
+
 ## Use with AI Agents
 
 ### MCP: Claude Code, Codex, Cursor, Claude Desktop

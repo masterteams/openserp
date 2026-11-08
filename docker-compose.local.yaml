@@ -1,0 +1,7 @@
+# Used by install.sh and deploy.sh to build the checked-out source locally.
+# The upstream docker-compose.yaml remains unchanged for prebuilt-image users.
+services:
+  openserp:
+    build:
+      context: .
+    image: openserp:local
